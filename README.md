@@ -1,6 +1,6 @@
 # IOT_task3_ibmwatson_chatbot
 
-added ibm watson assistant to the first page of the previous controller task.
+added ibm watson assistant to the first page of the previous controller task. json file was exported from ibm watson, and integrated into the index.html page
 
 it has 4 intents, #ترحيب #حجز لمعرض #تقييم #خدماتي
 
