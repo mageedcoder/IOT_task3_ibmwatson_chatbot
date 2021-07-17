@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Robot Directions إتجاهات الروبوت</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href='style.css'>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
+            integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+</head>
+<body>
+<form name="form2" method="post" action="save_to_db2.php" style="text-align: center;">
+    <div class="direction-buttons">
+        <button type="button" class="btn btn-primary" id="left" name="left" value="left">LEFT</button>
+        <button type="button" class="btn btn-success" id="right" name="right" value="right">RIGHT</button>
+        <button type="button" class="btn btn-danger" id="stop" name="stop" value="stop">STOP</button>
+        <button type="button" class="btn btn-warning" id="forward" name="forward" value="forward">FORWARD</button>
+        <button type="button" class="btn btn-info" id="backward" name="backward" value="backward">BACKWARD</button>
+    </div>
+</form>
+
+<br>
+
+    <div class="current-direction" style="text-align: center; direction: ltr; font-size: xx-large">
+
+    </div>
+
+<!-- Custom JS -->
+<script>
+    $('button').each(function (index) {
+        $(this).on('click', function () {
+            var current_button_value = $(this).val()
+            startFetch(current_button_value);
+        });
+    })
+</script>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+<!-- Fetch JS better than AJAX -->
+<script>
+    function success(json, current_button_value) {
+        // document.getElementById('after').innerHTML = "AFTER: " + JSON.stringify(json);
+        $('.current-direction').html('Current direction: ' + '<b><u>' + current_button_value + '</u></b>' + ' saved to DB.')
+        console.log("AFTER Save to DB: " + JSON.stringify(json));
+    } // ----------------------------------------------------------------------------------------------
+
+    function failure(error) {
+        // document.getElementById('after').innerHTML = "ERROR: " + error;
+        $('.current-direction').html('ERROR: ' + '<b><u>' + error + '</u></b>')
+        console.log("ERROR: " + error);
+    } // ----------------------------------------------------------------------------------------------
+
+    function startFetch(current_button_value) {
+        var url    = 'save_to_db2.php';
+        var data = {'direction': current_button_value};
+
+        // document.getElementById('before').innerHTML = "BEFORE: " + JSON.stringify(before);
+        console.log("DATA: " + JSON.stringify(data));
+
+        fetch(url, {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers:{
+                'Content-Type': 'application/json'
+            }
+        }).then(res => res.json())
+            .then(response => success(response, current_button_value))
+            .catch(error => failure(error));
+    }
+</script>
+
+
+</body>
+</html>

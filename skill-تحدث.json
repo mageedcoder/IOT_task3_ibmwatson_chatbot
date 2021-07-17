@@ -1,0 +1,461 @@
+{
+  "intents": [
+    {
+      "intent": "ترحيب",
+      "examples": [
+        {
+          "text": "اللسلام عليكم"
+        },
+        {
+          "text": "اهلين"
+        },
+        {
+          "text": "شالعلوم"
+        },
+        {
+          "text": "هلا"
+        },
+        {
+          "text": "هلا وغلا"
+        },
+        {
+          "text": "هلا, يا مرحبا"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "تقييم",
+      "examples": [
+        {
+          "text": "٨٠%"
+        },
+        {
+          "text": "حاب أقيمكم"
+        },
+        {
+          "text": "حاب أقييمكم"
+        },
+        {
+          "text": "كيف أقيمكم"
+        },
+        {
+          "text": "ميف أقيمكم"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "حجز_معرض_روبوت",
+      "examples": [
+        {
+          "text": "حاب أحجز"
+        },
+        {
+          "text": "عندكم حجوزات"
+        },
+        {
+          "text": "؟هل فيه حجوزات"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "خدماتي",
+      "examples": [
+        {
+          "text": "ايش تقدمون"
+        },
+        {
+          "text": "ايش خدماتك"
+        },
+        {
+          "text": "خدماتك"
+        },
+        {
+          "text": "ماذا تقدمون"
+        },
+        {
+          "text": "ماهي خدماتكم"
+        }
+      ],
+      "description": "ايش خدماتك"
+    }
+  ],
+  "entities": [
+    {
+      "entity": "sys-date",
+      "values": [],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "sys-number",
+      "values": [],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "sys-percentage",
+      "values": [],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "sys-time",
+      "values": [],
+      "fuzzy_match": true
+    }
+  ],
+  "metadata": {
+    "api_version": {
+      "major_version": "v2",
+      "minor_version": "2018-11-08"
+    }
+  },
+  "dialog_nodes": [
+    {
+      "type": "event_handler",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "أي وقت تبي؟"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "slot_7_1626485832072",
+      "event_name": "focus",
+      "dialog_node": "handler_10_1626485832073",
+      "previous_sibling": "handler_1_1626485832073"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_7_1626485832072",
+      "context": {
+        "time": "@sys-time"
+      },
+      "conditions": "@sys-time",
+      "event_name": "input",
+      "dialog_node": "handler_1_1626485832073"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_6_1626486356068",
+      "context": {
+        "percentage": "@sys-percentage"
+      },
+      "conditions": "@sys-percentage",
+      "event_name": "input",
+      "dialog_node": "handler_1_1626486356081"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "تقييمك "
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "slot_6_1626486356068",
+      "event_name": "focus",
+      "dialog_node": "handler_5_1626486356081",
+      "previous_sibling": "handler_1_1626486356081"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_3_1626485627555",
+      "context": {
+        "date": "@sys-date"
+      },
+      "conditions": "@sys-date",
+      "event_name": "input",
+      "dialog_node": "handler_6_1626485627567"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_9_1626485800167",
+      "context": {
+        "number": "@sys-number"
+      },
+      "conditions": "@sys-number",
+      "event_name": "input",
+      "dialog_node": "handler_6_1626485800168"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "كم عددكم؟"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "slot_9_1626485800167",
+      "event_name": "focus",
+      "dialog_node": "handler_7_1626485800168",
+      "previous_sibling": "handler_6_1626485800168"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_6_1626486635795",
+      "event_name": "focus",
+      "dialog_node": "handler_7_1626486635810",
+      "previous_sibling": "handler_8_1626486635810"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "أي يوم؟"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "slot_3_1626485627555",
+      "event_name": "focus",
+      "dialog_node": "handler_8_1626485627567",
+      "previous_sibling": "handler_6_1626485627567"
+    },
+    {
+      "type": "event_handler",
+      "parent": "slot_6_1626486635795",
+      "event_name": "input",
+      "dialog_node": "handler_8_1626486635810"
+    },
+    {
+      "type": "frame",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "تم اخذ تقييمك"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_6_1626484059748",
+      "conditions": "#تقييم",
+      "dialog_node": "node_1_1626486334082",
+      "previous_sibling": "slot_6_1626486635795"
+    },
+    {
+      "type": "frame",
+      "title": "حجز_لمعرض الروبوتات",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "تم"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#حجز_معرض_روبوت",
+      "dialog_node": "node_2_1626484178027",
+      "previous_sibling": "node_9_1626484277816"
+    },
+    {
+      "type": "standard",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "هلا ومسهلا"
+              },
+              {
+                "text": "ارحب"
+              },
+              {
+                "text": "هلا بك"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "random"
+          }
+        ]
+      },
+      "conditions": "#ترحيب",
+      "digress_in": "does_not_return",
+      "dialog_node": "node_5_1626481898064",
+      "previous_sibling": "مرحبا"
+    },
+    {
+      "type": "frame",
+      "title": "تقييمك",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "0% - 100% عطنا تقييمك من"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#تقييم",
+      "dialog_node": "node_6_1626484059748",
+      "previous_sibling": "node_2_1626484178027"
+    },
+    {
+      "type": "standard",
+      "title": "خدماتي",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "خدمة الحجز للحفل الختامي, خدمة تقييم الحفل "
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#خدماتي",
+      "dialog_node": "node_9_1626484277816",
+      "previous_sibling": "node_5_1626481898064"
+    },
+    {
+      "type": "slot",
+      "parent": "node_2_1626484178027",
+      "variable": "$date",
+      "dialog_node": "slot_3_1626485627555"
+    },
+    {
+      "type": "slot",
+      "parent": "node_1_1626486334082",
+      "variable": "$percentage",
+      "dialog_node": "slot_6_1626486356068"
+    },
+    {
+      "type": "slot",
+      "parent": "node_6_1626484059748",
+      "dialog_node": "slot_6_1626486635795"
+    },
+    {
+      "type": "slot",
+      "parent": "node_2_1626484178027",
+      "variable": "$time",
+      "dialog_node": "slot_7_1626485832072",
+      "previous_sibling": "slot_9_1626485800167"
+    },
+    {
+      "type": "slot",
+      "parent": "node_2_1626484178027",
+      "variable": "$number",
+      "dialog_node": "slot_9_1626485800167",
+      "previous_sibling": "slot_3_1626485627555"
+    },
+    {
+      "type": "standard",
+      "title": "أي شيء آخر",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "مافهمت عليك, ينفع تعيد الصياغة؟"
+              },
+              {
+                "text": "هل يمكنك اعادة صياغة عبارتك؟ أنا لا فهم"
+              },
+              {
+                "text": "لم أفهم قصدك"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "anything_else",
+      "dialog_node": "أي شيء آخر",
+      "previous_sibling": "node_6_1626484059748",
+      "disambiguation_opt_out": true
+    },
+    {
+      "type": "standard",
+      "title": "مرحبا",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "مرحبا كيف تحب أساعدك, اسالني عن خدماتي"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "welcome",
+      "dialog_node": "مرحبا"
+    }
+  ],
+  "counterexamples": [
+    {
+      "text": "٨٠%"
+    },
+    {
+      "text": "الخميس"
+    }
+  ],
+  "system_settings": {
+    "disambiguation": {
+      "prompt": ":هل قصدت",
+      "enabled": true,
+      "randomize": true,
+      "max_suggestions": 5,
+      "suggestion_text_policy": "title",
+      "none_of_the_above_prompt": "كل ما سبق خطأ"
+    },
+    "human_agent_assist": {
+      "prompt": ":هل قصدت"
+    }
+  },
+  "learning_opt_out": false,
+  "name": "تحدث",
+  "language": "ar",
+  "description": ""
+}
